@@ -3,6 +3,7 @@ kind: AppProject
 metadata:
   name: platform-project
   namespace: argocd
+
 spec:
   description: "Platform Engineering Project - isolated workloads"
 
@@ -13,6 +14,12 @@ spec:
     - namespace: nginx
       server: https://kubernetes.default.svc
     - namespace: nginx-demo
+      server: https://kubernetes.default.svc
+    - namespace: nginx-dev
+      server: https://kubernetes.default.svc
+    - namespace: nginx-staging
+      server: https://kubernetes.default.svc
+    - namespace: nginx-prod
       server: https://kubernetes.default.svc
 
   clusterResourceWhitelist:
