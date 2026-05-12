@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-project
+  namespace: argocd
+spec:
+  description: "Platform Engineering Project - isolated workloads"
+
+  sourceRepos:
+    - https://github.com/jgaragorry/k8s-argocd-platform-engineering-lab.git
+
+  destinations:
+    - namespace: nginx
+      server: https://kubernetes.default.svc
+    - namespace: nginx-demo
+      server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service
+
+  namespaceResourceWhitelist:
+    - group: ""
+      kind: "*"
+    - group: apps
+      kind: "*"
